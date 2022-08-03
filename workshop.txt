@@ -1,0 +1,17 @@
+version=1
+id=2844283648
+title=No More Skilless Survivors
+description=Tired of being months into your world and spawning new survivors that were seemingly born yesterday? Me too!
+description=
+description=This mod allows you to spawn new survivors that have randomized skill sets. It's very customizeable (check out the screenshots above for a sneak peak) and allows you to progressively expand how many skills your survivors get over time and even how skilled they are!
+description=
+description=This is my second mod, so please do let me know if you run into any issues or bugs!
+description=
+description=Currently untested in multiplayer. If you try it out and there are issues, please do let me know and I'll try to iron them out when possible.
+description=
+description=BIG shoutout to some of the people over in the discord (notable @Konijima and @VMK) for the help and direction when I needed it! You guys are great!
+description=
+description=Check out my first mod here, Sun Sensitive Zombies.
+description=https://steamcommunity.com/sharedfiles/filedetails/?id=2843606331
+tags=Build 41;Realistic
+visibility=public
