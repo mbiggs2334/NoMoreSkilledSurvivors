@@ -70,16 +70,8 @@ local function ApplyChanges(specificPlayer)
 
     --resets all skills to zero if blank state is enabled
     if blankSlate then
-        print(tostring( keepProfession));
         --skips over the blank state exception/profession skills, if any
         if (blankSlateExceptionOne > 1 or blankSlateExceptionTwo > 1) and (not keepProfession) then
-            print("You shouldn't see this");
-            print("You shouldn't see this");
-            print("You shouldn't see this");
-            print("You shouldn't see this");
-            print("You shouldn't see this");
-            print("You shouldn't see this");
-            print("You shouldn't see this");
             for i = 0, #skillList do
                 local skipIteration = false;
                 if i == (blankSlateExceptionOne - 1) or i == (blankSlateExceptionTwo - 1) then skipIteration = true end
@@ -259,4 +251,8 @@ end
 --
 --Events.OnGameStart.Add(StartNMSS);
 
+
 Events.OnCreatePlayer.Add(alterPlayerStats);
+
+
+--getmetatable() for workable profession data from ProfessionFactory.getProfession() return
