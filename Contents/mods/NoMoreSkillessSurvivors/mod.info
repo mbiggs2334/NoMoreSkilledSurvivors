@@ -1,6 +1,6 @@
-id=NoMoreSkillessSurvivors
-name=No More Skilless Survivors
-description=Allows you to create surviors that wernen't seemingly born yesterday! Randomize their skill set!
+id=NoMoreSkillessCharacters
+name=No More Skilless Characters
+description=Allows you to create characters that weren't seemingly born yesterday! Randomize their skill set!
 
-poster=poster.png
+poster=
 icon=icon.png

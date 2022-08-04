@@ -31,6 +31,7 @@ local skillList = {
 local blankSlate;
 local progressiveSkills;
 local progressiveLevels;
+local keepProfession;
 
 
 local blankSlateExceptionOne;
@@ -41,6 +42,8 @@ local minimumSkillSelection;
 local maxSkillSelection;
 local minimumLevel;
 local maxLevel;
+local playerProfession;
+local playerProfessionInfo;
 
 local function checkIfSkillIsStored(skillSet, x)
     local skillPresent = false;
@@ -54,25 +57,41 @@ end
 
 local function checkForDuplicates(skillSet)
     local x = ZombRand(#skillList);
-    if checkIfSkillIsStored(skillSet, x) or x == blankSlateExceptionOne-1 or x == blankSlateExceptionTwo-1
+    if checkIfSkillIsStored(skillSet, x) or x == (blankSlateExceptionOne - 1) or x == (blankSlateExceptionTwo - 1)
     then
         x = checkForDuplicates(skillSet)
     end
     return x
 end
 
-local function ApplyChanges()
+local function ApplyChanges(specificPlayer)
     local selectedSkills = {};
-    local player = getPlayer();
+    local player = getSpecificPlayer(specificPlayer);
 
     --resets all skills to zero if blank state is enabled
     if blankSlate then
-        --skips over the blank state exception skills, if any
-        if blankSlateExceptionOne > 1 or blankSlateExceptionTwo > 1 then
+        print(tostring( keepProfession));
+        --skips over the blank state exception/profession skills, if any
+        if (blankSlateExceptionOne > 1 or blankSlateExceptionTwo > 1) and (not keepProfession) then
+            print("You shouldn't see this");
+            print("You shouldn't see this");
+            print("You shouldn't see this");
+            print("You shouldn't see this");
+            print("You shouldn't see this");
+            print("You shouldn't see this");
+            print("You shouldn't see this");
             for i = 0, #skillList do
                 local skipIteration = false;
                 if i == (blankSlateExceptionOne - 1) or i == (blankSlateExceptionTwo - 1) then skipIteration = true end
                 if not skipIteration then
+                    player:level0(Perks[skillList[i]]);
+                    player:getXp():setXPToLevel(Perks[skillList[i]], 0);
+                end
+            end
+        elseif keepProfession then
+            for i = 0, #skillList do
+                local skill = tostring(skillList[i])
+                if not string.find(playerProfessionInfo, skill) then
                     player:level0(Perks[skillList[i]]);
                     player:getXp():setXPToLevel(Perks[skillList[i]], 0);
                 end
@@ -87,19 +106,30 @@ local function ApplyChanges()
 
     --Grabs the skill names to be altered and adds them to a temp storage
     while #selectedSkills < maxSkillSelection do
-        local startingSkillIndex = ZombRand(#skillList);
+        local skipIteration = false;
+        local skillIndex = ZombRand(#skillList) - 1;
 
         if #selectedSkills > 0 then
-            startingSkillIndex = checkForDuplicates(selectedSkills);
+            skillIndex = checkForDuplicates(selectedSkills);
         end
 
-        table.insert(selectedSkills, skillList[startingSkillIndex]);
+        if keepProfession then
+            local skillString = tostring(skillList[skillIndex]);
+            if string.find(playerProfessionInfo, skillString) then
+                skipIteration = true;
+            end
+        end
+
+        if not skipIteration then
+            table.insert(selectedSkills, skillList[skillIndex]);
+        end
     end
 
     --ZombRand() below seems to never select the true maxLevel value but only one below it
     --Add one just to be sure the true value can be reached
-    maxLevel = maxLevel + 1;
-    --applies the level changes based on the skill in temp storage
+    --maxLevel = maxLevel + 1;
+
+    --applies the level changes based on the skills in selectedSkills
     for _, skillName in ipairs(selectedSkills) do
         local randomizedSkillLevel = ZombRand(minimumLevel, maxLevel);
 
@@ -109,10 +139,6 @@ local function ApplyChanges()
             if randomizedSkillLevel > 1 then
                 randomizedSkillLevel = randomizedSkillLevel - 1;
             end
-        --elseif rand == 5 then
-        --    if randomizedSkillLevel > 2 then
-        --        randomizedSkillLevel = randomizedSkillLevel - 2;
-        --    end
         elseif rand == 4 then
             if randomizedSkillLevel < 10 then
                 randomizedSkillLevel = randomizedSkillLevel + 1;
@@ -170,24 +196,24 @@ local function calculateProgressiveNumbers(levelOrSkill, timelineLength, minimum
     end
 end
 
+
 local function alterPlayerStats(player)
     --Make sure the player is a fresh spawn before we do anything
     if getSpecificPlayer(player):getHoursSurvived() < 0.005 then
 
         -- ensures sandbox options are up to date
-        blankSlate = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.removeBasePerks"):getValue();
-        blankSlateExceptionOne = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.skillOneUneffected"):getValue();
-        blankSlateExceptionTwo = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.skillTwoUneffected"):getValue();
-        progressiveSkills = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveSkills"):getValue();
-        progressiveSkillsTime = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveSkillSelection"):getValue() + 2;
-        progressiveLevels = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveMaxLevel"):getValue();
-        progressiveLevelsTime = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveMaxLevelSelection"):getValue() + 2;
-        maxSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.numberOfSkills"):getValue() - 1;
-        minimumSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.minimumNumberOfSkills"):getValue() - 1;
-        maxLevel = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.maxLevels"):getValue() - 1;
-        minimumLevel = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.minimumLevel"):getValue() - 1;
-
-        print("Orange Ceasar: " .. tostring(progressiveLevelsTime));
+        blankSlate = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.removeBasePerks"):getValue();
+        blankSlateExceptionOne = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.skillOneUneffected"):getValue();
+        blankSlateExceptionTwo = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.skillTwoUneffected"):getValue();
+        progressiveSkills = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveSkills"):getValue();
+        progressiveSkillsTime = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveSkillSelection"):getValue() + 2;
+        progressiveLevels = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveMaxLevel"):getValue();
+        progressiveLevelsTime = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveMaxLevelSelection"):getValue() + 2;
+        maxSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.numberOfSkills"):getValue() - 1;
+        minimumSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.minimumNumberOfSkills"):getValue() - 1;
+        maxLevel = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.maxLevels"):getValue() - 1;
+        minimumLevel = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.minimumLevel"):getValue() - 1;
+        keepProfession = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.keepProfession"):getValue();
 
         --safe check for if the user makes the minimum higher than the maximum
         if minimumLevel > maxLevel then
@@ -205,32 +231,32 @@ local function alterPlayerStats(player)
             maxSkillSelection = calculateProgressiveNumbers(maxSkillSelection, progressiveSkillsTime, minimumSkillSelection);
         end
 
-        ApplyChanges();
+        -- grab player profession/profession info
+        if keepProfession then
+            playerProfession = getSpecificPlayer(player):getDescriptor():getProfession();
+            playerProfessionInfo = tostring(ProfessionFactory.getProfession(playerProfession):getXPBoostMap());
+        end
+
+        ApplyChanges(player);
     end
 end
 
-local function WhatMonth()
-    local gt = GameTime:getInstance();
-    local month = gt:getMonth();
-    getPlayer():Say(tostring(month));
-end
-
 --local function StartNMSS()
-    --blankSlate = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.removeBasePerks"):getValue();
-    --blankSlateExceptionOne = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.skillOneUneffected"):getValue();
-    --blankSlateExceptionTwo = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.skillTwoUneffected"):getValue();
-    --progressiveSkills = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveSkills"):getValue();
-    --progressiveSkillsTime = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveSkillSelection"):getValue();
-    --progressiveLevels = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveMaxLevel"):getValue();
-    --progressiveLevelsTime = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.progressiveMaxLevelSelection"):getValue();
-    --maxSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.numberOfSkills"):getValue();
-    --minimumSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.minimumNumberOfSkills"):getValue() - 1;
-    --maxLevel = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.maxLevels"):getValue();
-    --minimumLevel = getSandboxOptions():getOptionByName("NoMoreSkillessSurvivors.minimumLevel"):getValue() - 1;
+    --blankSlate = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.removeBasePerks"):getValue();
+    --blankSlateExceptionOne = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.skillOneUneffected"):getValue();
+    --blankSlateExceptionTwo = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.skillTwoUneffected"):getValue();
+    --progressiveSkills = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveSkills"):getValue();
+    --progressiveSkillsTime = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveSkillSelection"):getValue();
+    --progressiveLevels = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveMaxLevel"):getValue();
+    --progressiveLevelsTime = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.progressiveMaxLevelSelection"):getValue();
+    --maxSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.numberOfSkills"):getValue();
+    --minimumSkillSelection = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.minimumNumberOfSkills"):getValue() - 1;
+    --maxLevel = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.maxLevels"):getValue();
+    --minimumLevel = getSandboxOptions():getOptionByName("NoMoreSkillessCharacters.minimumLevel"):getValue() - 1;
 --
 --    Events.OnCreatePlayer.Add(alterPlayerStats);
 --end
 --
 --Events.OnGameStart.Add(StartNMSS);
+
 Events.OnCreatePlayer.Add(alterPlayerStats);
-Events.OnPlayerAttackFinished.Add(WhatMonth);

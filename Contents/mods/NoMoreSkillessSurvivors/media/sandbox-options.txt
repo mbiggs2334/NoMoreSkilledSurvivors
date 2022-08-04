@@ -1,71 +1,77 @@
 VERSION = 1,
 
-option NoMoreSkillessSurvivors.removeBasePerks
+option NoMoreSkillessCharacters.removeBasePerks
 {
 	type = boolean, default = true,
-	page = NoMoreSkillessSurvivors, translation = removeBasePerks,
+	page = NoMoreSkillessCharacters, translation = removeBasePerks,
 }
 
-option NoMoreSkillessSurvivors.skillOneUneffected
+option NoMoreSkillessCharacters.keepProfession
+{
+	type = boolean, default = false,
+	page = NoMoreSkillessCharacters, translation = keepProfession,
+}
+
+option NoMoreSkillessCharacters.skillOneUneffected
 {
 	type = enum, numValues = 27, default = 1,
-	page = NoMoreSkillessSurvivors, translation = skillOneUneffected,
+	page = NoMoreSkillessCharacters, translation = skillOneUneffected,
 	valueTranslation = Uneffected_Skills,
 }
 
-option NoMoreSkillessSurvivors.skillTwoUneffected
+option NoMoreSkillessCharacters.skillTwoUneffected
 {
 	type = enum, numValues = 27, default = 1,
-	page = NoMoreSkillessSurvivors, translation = skillTwoUneffected,
+	page = NoMoreSkillessCharacters, translation = skillTwoUneffected,
 	valueTranslation = Uneffected_Skills,
 }
 
-option NoMoreSkillessSurvivors.progressiveSkills
+option NoMoreSkillessCharacters.progressiveSkills
 {
 	type = boolean, default = true,
-	page = NoMoreSkillessSurvivors, translation = progressiveSkills,
+	page = NoMoreSkillessCharacters, translation = progressiveSkills,
 }
 
-option NoMoreSkillessSurvivors.progressiveSkillSelection
+option NoMoreSkillessCharacters.progressiveSkillSelection
 {
 	type = enum, numValues = 10, default = 4,
-	page = NoMoreSkillessSurvivors, translation = progressiveSkillSelection,
+	page = NoMoreSkillessCharacters, translation = progressiveSkillSelection,
 }
 
-option NoMoreSkillessSurvivors.minimumNumberOfSkills
+option NoMoreSkillessCharacters.minimumNumberOfSkills
 {
-	type = enum, numValues = 21, default = 2,
-	page = NoMoreSkillessSurvivors, translation = minimumNumberOfSkills
+	type = enum, numValues = 19, default = 2,
+	page = NoMoreSkillessCharacters, translation = minimumNumberOfSkills
 }
 
-option NoMoreSkillessSurvivors.numberOfSkills
+option NoMoreSkillessCharacters.numberOfSkills
 {
-	type = enum, numValues = 21, default = 8,
-	page = NoMoreSkillessSurvivors, translation = numberOfSkills,
+	type = enum, numValues = 19, default = 8,
+	page = NoMoreSkillessCharacters, translation = numberOfSkills,
 }
 
-option NoMoreSkillessSurvivors.progressiveMaxLevel 
+option NoMoreSkillessCharacters.progressiveMaxLevel 
 {
 	type = boolean, default = true,
-	page = NoMoreSkillessSurvivors, translation = progressiveMaxLevel,
+	page = NoMoreSkillessCharacters, translation = progressiveMaxLevel,
 }
 
-option NoMoreSkillessSurvivors.progressiveMaxLevelSelection
+option NoMoreSkillessCharacters.progressiveMaxLevelSelection
 {
 	type = enum, numValues = 10, default = 4,
-	page = NoMoreSkillessSurvivors, translation = progressiveMaxLevelSelection,
+	page = NoMoreSkillessCharacters, translation = progressiveMaxLevelSelection,
 }
 
-option NoMoreSkillessSurvivors.minimumLevel
+option NoMoreSkillessCharacters.minimumLevel
 {
 	type = enum, numValues = 11, default = 2,
-	page = NoMoreSkillessSurvivors, translation = minimumLevel,
+	page = NoMoreSkillessCharacters, translation = minimumLevel,
 }
 
-option NoMoreSkillessSurvivors.maxLevels
+option NoMoreSkillessCharacters.maxLevels
 {
 	type = enum, numValues = 11, default = 7,
-	page = NoMoreSkillessSurvivors, translation = maxLevels,
+	page = NoMoreSkillessCharacters, translation = maxLevels,
 }
 
 
