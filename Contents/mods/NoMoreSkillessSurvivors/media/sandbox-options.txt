@@ -12,6 +12,12 @@ option NoMoreSkillessCharacters.keepProfession
 	page = NoMoreSkillessCharacters, translation = keepProfession,
 }
 
+option NoMoreSkillessCharacters.keepTraits
+{
+	type = boolean, default = false,
+	page = NoMoreSkillessCharacters, translation = keepTraits,
+}
+
 option NoMoreSkillessCharacters.skillOneUneffected
 {
 	type = enum, numValues = 27, default = 1,
@@ -40,13 +46,13 @@ option NoMoreSkillessCharacters.progressiveSkillSelection
 
 option NoMoreSkillessCharacters.minimumNumberOfSkills
 {
-	type = enum, numValues = 19, default = 2,
+	type = enum, numValues = 27, default = 2,
 	page = NoMoreSkillessCharacters, translation = minimumNumberOfSkills
 }
 
 option NoMoreSkillessCharacters.numberOfSkills
 {
-	type = enum, numValues = 19, default = 8,
+	type = enum, numValues = 27, default = 8,
 	page = NoMoreSkillessCharacters, translation = numberOfSkills,
 }
 

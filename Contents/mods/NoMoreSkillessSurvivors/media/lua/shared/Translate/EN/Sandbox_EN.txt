@@ -2,15 +2,18 @@ Sandbox_EN = {
     	Sandbox_NoMoreSkillessCharacters = "No More Skilless Characters",
 
 		Sandbox_removeBasePerks = "Blank slate",
-		Sandbox_removeBasePerks_tooltip = "(Recommended) Set all skills to zero before randomizing them. NOTE: This will effect skill levels received from traits and professions.",
+		Sandbox_removeBasePerks_tooltip = "(Recommended) Set all skills to zero before randomizing them. NOTE: This will effect skill levels received from traits and professions. Playing with Blank Slate enabled in addition to BOTH keep traits and keep profession is "essentially" the same as playing with all three options disabled.",
 
 		Sandbox_keepProfession = "Keep profession",
-		Sandbox_keepProfession_tooltip = "This will prevent Blank Slate from removing skills given by professions. NOTE: This will overwrite any Blank Slate Exception selections made below.",
+		Sandbox_keepProfession_tooltip = "This will prevent Blank Slate from removing skills given by professions. NOTE: This will disable any Blank Slate Exception selections made below. There is also a chance for RNG to add to the professions skill bonus.",
+
+		Sandbox_keepTraits = "Keep traits",
+		Sandbox_keepTraits_tooltip = "This will prevent Blank Slate from removing skills given by traits. NOTE: This will disable any Blank Slate Exception selections made below. There is also a chance for RNG to add to the trait skill bonus.",
 
 		Sandbox_skillOneUneffected = "Blank slate exception",
-		Sandbox_skillOneUneffected_tooltip = "Select a skill that will NOT be affected by Blank Slate. NOTE: Only relevent if Blank Slate is enabled and Keep Profession is disabled.",
+		Sandbox_skillOneUneffected_tooltip = "Select a skill that will NOT be affected by Blank Slate. NOTE: Only relevent if Blank Slate is enabled and both keep profession and keep traits are disabled.",
 		Sandbox_skillTwoUneffected = "Blank slate exception",
-		Sandbox_skillTwoUneffected_tooltip = "Select a second skill that will NOT be affected by Blank Slate. NOTE: Only relevent if Blank Slate is enabled and Keep Profession is disabled.",
+		Sandbox_skillTwoUneffected_tooltip = "Select a second skill that will NOT be affected by Blank Slate. NOTE: Only relevent if Blank Slate is enabled and both keep profession and keep traits are disabled.",
 		Sandbox_Uneffected_Skills_option1 = "None",
 		Sandbox_Uneffected_Skills_option2 = "Fitness",
 		Sandbox_Uneffected_Skills_option3 = "Strength",
@@ -43,7 +46,7 @@ Sandbox_EN = {
 		Sandbox_progressiveSkills_tooltip = "Progressively reach the max amount of skills randomized over a period of time (in months), i.e. first month will be 2 skills, second month 3 skills etc.",
 
 		Sandbox_progressiveSkillSelection = "Progressive skills timeline",
-		Sandbox_progressiveSkillSelection_tooltip = "How many months the amount of randomzied skills will escalate over.",
+		Sandbox_progressiveSkillSelection_tooltip = "How many months will the amount of randomzied skills escalate over. NOTE: Only relevent if Progressive skills is enabled.",
 		Sandbox_progressiveSkillSelection_option1 = "3 months",
 		Sandbox_progressiveSkillSelection_option2 = "4 months",
 		Sandbox_progressiveSkillSelection_option3 = "5 months",
@@ -57,7 +60,7 @@ Sandbox_EN = {
 
 
 		Sandbox_minimumNumberOfSkills = "Min. skills randomized",
-		Sandbox_minimumNumberOfSkills_tooltip = "The minimum number of skills that will be randomized. NOTE: Only relevent if Progressive Skills is enabled.",
+		Sandbox_minimumNumberOfSkills_tooltip = "The minimum number of skills that will be randomized. NOTE: Only relevent if Progressive skills is enabled.",
 		Sandbox_minimumNumberOfSkills_option1 = "0",
 		Sandbox_minimumNumberOfSkills_option2 = "1",
 		Sandbox_minimumNumberOfSkills_option3 = "2",
@@ -77,10 +80,18 @@ Sandbox_EN = {
 		Sandbox_minimumNumberOfSkills_option17 = "16",
 		Sandbox_minimumNumberOfSkills_option18 = "17",
 		Sandbox_minimumNumberOfSkills_option19 = "18",
+		Sandbox_minimumNumberOfSkills_option20 = "19",
+		Sandbox_minimumNumberOfSkills_option21 = "20",
+		Sandbox_minimumNumberOfSkills_option22 = "21",
+		Sandbox_minimumNumberOfSkills_option23 = "22",
+		Sandbox_minimumNumberOfSkills_option24 = "23",
+		Sandbox_minimumNumberOfSkills_option25 = "24",
+		Sandbox_minimumNumberOfSkills_option26 = "25",
+		Sandbox_minimumNumberOfSkills_option27 = "26",
 
 
 		Sandbox_numberOfSkills = "Max skills randomzied",
-		Sandbox_numberOfSkills_tooltip = "The number of skills that will be randomized. NOTE: If Progressive Skills is enabled, this will be the maximum number that will be randomzied over time.",
+		Sandbox_numberOfSkills_tooltip = "The number of skills that will be randomized. NOTE: If Progressive Skills is enabled, this will be the max number of skills randomized, starting from your minimum selection up to your selection here.",
 		Sandbox_numberOfSkills_option1 = "0",
 		Sandbox_numberOfSkills_option2 = "1",
 		Sandbox_numberOfSkills_option3 = "2",
@@ -100,14 +111,23 @@ Sandbox_EN = {
 		Sandbox_numberOfSkills_option17 = "16",
 		Sandbox_numberOfSkills_option18 = "17",
 		Sandbox_numberOfSkills_option19 = "18",
+		Sandbox_numberOfSkills_option20 = "19",
+		Sandbox_numberOfSkills_option21 = "20",
+		Sandbox_numberOfSkills_option22 = "21",
+		Sandbox_numberOfSkills_option23 = "22",
+		Sandbox_numberOfSkills_option24 = "23",
+		Sandbox_numberOfSkills_option25 = "24",
+		Sandbox_numberOfSkills_option26 = "25",
+		Sandbox_numberOfSkills_option27 = "26",
+		
 		
 
 		Sandbox_progressiveMaxLevel = "Progressive levels",
-		Sandbox_progressiveMaxLevel_tooltip = "Progressively reach the max level selection over a period of time (in months), i.e. first month max level will be 2, second month max level 4 etc.",
+		Sandbox_progressiveMaxLevel_tooltip = "Progressively reach the max amount of levels randomized over a period of time (in months), i.e. first month max level will be 2, second month max level 4 etc. up until you hit your max level selected.",
 
 		
 		Sandbox_progressiveMaxLevelSelection = "Progressive level timeline",
-		Sandbox_progressiveMaxLevelSelection_tooltip = "How many months the max level of randomized skills will escalate over.",
+		Sandbox_progressiveMaxLevelSelection_tooltip = "How many months will the amount of randomzied levels escalate over. NOTE: Only relevent if Progressive levels is enabled.",
 		Sandbox_progressiveMaxLevelSelection_option1 = "3 months",
 		Sandbox_progressiveMaxLevelSelection_option2 = "4 months",
 		Sandbox_progressiveMaxLevelSelection_option3 = "5 months",
@@ -136,7 +156,7 @@ Sandbox_EN = {
 
 
 		Sandbox_maxLevels = "Max level for skills",
-		Sandbox_maxLevels_tooltip = "The highest level that will be randomly selected, i.e. skill levels will be between the minimum and your selection.",
+		Sandbox_maxLevels_tooltip = "The max level that skills will be randomly selected at, i.e. skill levels will be between the minimum and your selection here.",
 		Sandbox_maxLevels_option1 = "0",
 		Sandbox_maxLevels_option2 = "1",
 		Sandbox_maxLevels_option3 = "2",
